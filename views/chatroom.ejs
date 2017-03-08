@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+  <title>Chat-Bot</title>
+  <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+  <link rel="stylesheet" href="/static/css/chatstyle.css" type="text/css">
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Welcome to chat id <% = data %></h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <input id="name_entry" type="text" class="form-control" placeholder="Name" required>
+                    </div>
+                    <button id="name_submit" type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+  <div class = "online_users one-third mobile-collapse">
+    <h3 class="heading"><i class="more_menu">expand_more</i> Online Users</h3>
+    <ul class="users"></ul>
+    </div>
+    <div class = "chat_room two-third mobile-collapse">
+      <div class="chat_head">
+        <div class="button close">
+        </div>
+        <div class="title">
+          Chat
+        </div>
+      </div>
+      <div class="message_window">
+        <ul class="message_list"></ul>
+      </div>
+      <div class="bottom_window">
+        <div class = "message_input_wrapper">
+          <input class="message_input" placeholder="Type your text here......">
+        </div>
+        <div class="send_message">
+          <div class="icon">
+          </div>
+          <div class="text">
+            Send
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="user_template">
+    <li class="user">
+      <div class="name_wrapper">
+        <img class="avatar" alt="Avatar">
+      </img>
+        <div class="name">
+        </div>
+      </div>
+    </li>
+  </div>
+  <div class="message_template">
+    <li class="message">
+      <div class="text_wrapper">
+        <div class="text">
+        </div>
+        <div class="user_name">
+        </div>
+      </div>
+    </li>
+      </div>
+  <script>
+    $(function(){
+      var socket = io();
+      $('#myModal').modal('show');
+      $('#name_submit').on('submit', function(e){
+        var str_name = $('#name_entry').val();
+        $('#name_entry').val('');
+        socket.emit('add user', str_name);
+      });
+
+      var display_users = false;
+      $('.more_menu').click(function(){
+        if(!display_users){
+          $('.users').css('display', 'block');
+        }
+        else {
+          $('.users').css('display', 'none');
+        }
+        display_users = !display_users;
+        $('.users').toggleClass(.'users_expanded').css('display', '');
+      });
+      var Message;
+       Message =  function(arg){
+        this.text = arg.text;
+        this.message_side =  arg.message_side;
+        this.draw = function(_this){
+          return function(){
+            var $message;
+            $message = $($('.message_template').clone().html());
+            $message.addClass(_this.message_side).find('.text').html(_this.text);
+            $('.messsage_list').append($message);
+            return setTimeout(function(){
+              return $message.addClass('appeared');
+            }, 0);
+          };
+
+        }(this);
+        return this;
+      };
+      var getMessageText, message_side, sendMessage;
+      message_side = 'right';
+      getMessageText = function(){
+        var $message_input;
+        $message_input = $('.message_input');
+        return $message_input.val();
+      };
+      sendMessage = function (text){
+        var $messages, message;
+        if(text.trim() == ''){
+          return;
+        }
+        $('.message_input').val('');
+        $messages = $('.message_list');
+        message_side = message_side === 'left'?'right':'left';
+        message = new Message({
+          text: text,
+          message_side: message_side
+        });
+        message.draw();
+      }
+      $(".send_message").click(function(e){
+        var message_text = getMessageText();
+        
+        return sendMessage(getMessageText());
+      });
+    });
+  </script>
+</body>
+
+</html>
