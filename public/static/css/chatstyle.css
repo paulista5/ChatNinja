@@ -170,6 +170,10 @@
    font-size: 30px;
    color: red;
  }
+
+.user_template{
+  display: none
+}
  .users{
    position: relative;
    list-style: none;
@@ -184,7 +188,7 @@
  .users .user .avatar{
    position: relative;
    float: left;
-   margin-left: 10px 10px 10px 5px;
+   margin: 10px 10px 10px 5px;
    border: 1px solid #bababa;
    border-radius: 50%;
    width: 50px;

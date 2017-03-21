@@ -1,10 +1,28 @@
-var dbModel = require('/model/modelDescription.js');
+var groupModel = require('./model/groupModel.js');
+var userModel = require('./model/userModel.js');
 
-var updateUser = function(id, position, callback){
-  dbModel.update({_id: id}, {$pull:{"users":{position: position}}}, function(err){
-    if(err) return callback(false);
-    return callback(true);
+var deleteUser = function(userId, callback){
+  userModel.findOneAndRemove({_id:userId},function(err, result){
+    var id = result.groupId;
+    if(err) callback(false);
+    else {
+      groupModel.findById(id, function(err, group){
+        var count = group.numberOfUsers;
+        count--;
+        if(count == 0){
+          groupModel.findByIdAndRemove(id, function(err){
+            if(err) handleError(err);
+          });
+        }
+        else{
+          groupModel.findOneAndUpdate({_id:id}, {$set:{numberOfUsers:count}}, function (err) {
+            if(err)handleError(err);
+            callback(true);
+          });
+        }
+      });
+    }
   });
 }
 
-module.exports = updateUser;
+module.exports = deleteUser;

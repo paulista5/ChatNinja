@@ -1,9 +1,10 @@
 <html>
 <head>
   <link rel="stylesheet" href="/static/css/mainpagestyle.css" type="text/css">
+   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  <!--<script src="/socket.io/socket.io.js"></script>-->
+  <script src = "/static/js/mainpagescript.js"></script>
   <meta name="viewport" content="width=device-width">
 </head>
 <body>
@@ -18,84 +19,29 @@
         </li>
       </ul>
     </div>
-
   </nav>
-
-  <div class="fullscreen-bg">
-    <video loop muted autoplay poster="image/Ipad_background.jpeg" class="fullscreen-bg__video">
-      <source src = "video/Ipad.mp4" type="video/mp4">
-      <source src = "video/Ipad.webm" type="video/webm">
-      <source src = "video/Ipad.ogv" type="video/ogg">
-    </video>
-    <image src="image/Ipad_background.jpeg" class="imagebackground" >
-    </image>
-  </div>
-  <div class="description">
-    <p class="description_text">"<strong>'ChatX'</strong> is a multiroom webchat application. Users can create groups, and ask their friends to join."
-    </p>
-  </div>
-  <div class="form_container">
+  <h1>Chat Ninja, a multiroom chat window</h1>
+  <div class="mainBody">
+    <h1 class="description_text">
+      Start a chat on your favourite topic!!!
+    </h1>
     <form class="startGroupChat">
-        <input class="groupName" type="text" name = "groupChatName" placeholder="enter name to start new group chat" required>
+        <label>Enter a group name: </label>
+        <input class="groupName" type="text" name = "groupChatName" required>
+        <label>Enter a topic name: </label>
+        <input class="topicName" type="text" name = "chatTopic" required>
         <button class="submitName" type="submit" name="Submit">Submit</button>
     </form>
-  </div>
-  <div class="available_chat_template">
+    <h2>Available Chats:</h2>
+      <ul class = "available_groups">
+      </ul>
+    </div>
+  <!-- <div class="available_chat_template">
    <div class="chat_heading">
       <p class="chat_heading_text">Available Chats:</p>
         </div>
         <ul class="available_chats">
         </ul>
-  </div>
-  <script>
-  var itemcount = 0;
-    $(function(){
-
-      $('.startGroupChat').on('submit', function(){
-        var groupName = $('.groupName').val();
-        if(groupName.trim() === ''){
-          return;
-        }
-        var groupItem = {name: groupName};
-        $.ajax({
-          type: "POST",
-          url:'/',
-          data: groupItem,
-          success: function(data){
-            location.reload();
-          }
-        });
-        return false;
-      });
-
-      if(!!window.EventSource){
-        var source = new EventSource('/stream');
-        source.addEventListener('message', function(e){
-          var groupNames = e.data.split('\n');
-          if(itemcount!=groupNames.length){
-            itemcount = groupNames.length;
-            for(var i=0; i < itemcount; i++){
-              var temp = JSON.parse(groupNames[i]);
-              $('.available_chats').append(
-                $('<div>').attr('class','groupNameTemplate').attr('href', temp._id).append(
-                  $('<li>').attr('class', 'list_groupName')
-              .append(temp.name)));
-            }
-          }
-        });
-        source.addEventListener('error', function(e){
-          if(e.target.readyState == EventSource.CLOSED){
-            console.log('Disconnected');
-          }
-          else if(e.target.readyState == EventSource.CONNECTING){
-            console.log('Connecting');
-          }
-        }, false);
-      }
-      else {
-        console.log('Browser does not support SSE');
-      }
-    });
-  </script>
+  </div> -->
 </body>
 </html>

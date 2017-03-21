@@ -1,16 +1,11 @@
 var mongoose = require('mongoose');
 
 mongoose.Promise  = global.Promise;
+var collectionName = 'ChatNinjaCollection';
 
 module.exports = function(){
-  before(function(done){
-    mongoose.connect('mongodb://localhost/groupDatabase');
-    mongoose.connection.once('open', function(){
-      console.log('Connection to database successfull');
-      done();
-    }).on('error', function(error){
-      console.log('Connection error:', error);
+    mongoose.connect('mongodb://localhost/'+collectionName, function(err){
+      if(err)handleError(err);
+      console.log('Connection to database successful!!')
     });
-  })
-
   }
