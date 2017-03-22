@@ -35,7 +35,6 @@ module.exports = function(app){
   });
   app.get('/ch/:id', function(req, res){
     var id = req.params.id;
-    console.log(id);;
     res.render('chatroom', {_id: id});
   });
 }
