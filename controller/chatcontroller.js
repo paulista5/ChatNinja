@@ -30,6 +30,7 @@ module.exports = function(io){
       io.sockets.in(socket.room).emit('new message', data);
     });
     socket.on('disconnect', function(){
+      console.log('disconnect called');
       deleteUser(socket.userId, function(response){
             if(response){
               io.sockets.in(socket.id).emit('remove user', socket.userId);
