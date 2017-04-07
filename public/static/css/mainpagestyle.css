@@ -31,9 +31,11 @@ body{
   text-decoration: none;
 }
 .menu_item .menu_item_link:hover{
-  background-color: #333;
+  /*background-color: #333;*/
 }
-
+.fa-git{
+  color: white;
+}
 h1{
   color: white;
   text-align: center;
