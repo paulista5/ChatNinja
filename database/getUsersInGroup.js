@@ -1,4 +1,4 @@
-var userModel = require('./model/userModel.js');
+var userModel = require('./userModel.js');
 
 var getAllUsers = function(groupId, callback){
   userModel.find({groupId: groupId}, function(err, docs){
@@ -6,3 +6,4 @@ var getAllUsers = function(groupId, callback){
     callback(docs);
   }).select('userName');
 }
+module.exports = getAllUsers;

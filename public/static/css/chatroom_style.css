@@ -1,14 +1,22 @@
 body{
-    background: #2196F3;
+    background: rgb(50, 50 , 50);
     font-family: Raleway;
+}
+.roomName{
+  display: none;
+}
+h1{
+  text-align: center;
+  color: white;
+  margin-top: 80px;
 }
 .modal{
   width: 50%;
   margin: 20px auto;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 4px;
-  box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+  /*border-radius: 4px;*/
+  /*box-shadow: 1px 2px 3px rgba(0,0,0,0.2);*/
 }
 .username_form{
   width: 80%;
@@ -41,18 +49,21 @@ label{
 
 }
 .online_users{
-  width: 20%;
-  margin-left: 5%;
+  width: 15%;
+  margin-left: 10%;
   margin-top: 20px;
-  margin-right: 10%;
+  margin-right: 5%;
   margin-bottom: auto;
   background-color: #FAFAFA;
   float: left;
   display: block;
   border: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 4px;
-  box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+  /*border-radius: 4px;*/
+  /*box-shadow: 1px 2px 3px rgba(0,0,0,0.2);*/
 
+}
+.users{
+  max-width: 100%;
 }
 .more_menu{
   display: none;
@@ -91,12 +102,14 @@ h3{
   position: relative;
 }
 .list_username{
-  padding: 5px 0;
-  max-width: 90%;
-  background-color: #039BE5;
-  color: white;
+  padding: 5px;
+  width: 80%;
   margin: 5px auto;
-  list-style-type: none;
+  background: #CCDBDC;
+  color: #003366;
+  border-radius: 2px;
+  /*border: 1px solid rgba(0, 0, 0, 0);*/
+  //border-bottom: 0.5px #E0E0E0 solid;
 }
 .chat_room{
   width: 60%;
@@ -104,8 +117,8 @@ h3{
   background: #fafafa;
   float: left;
   border: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 4px;
-  box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+  /*border-radius: 4px;*/
+  /*box-shadow: 1px 2px 3px rgba(0,0,0,0.2);*/
 
 }
 .chat_head{
@@ -118,43 +131,57 @@ h3{
   height: 450px;
   margin-top: 5px;
   margin-bottom: 15px;
-  overflow-y: auto;
   background-color: #fff;
+  overflow-y: auto;
+}
+.message_list{
+  max-width: 100%;
 }
 .message{
   max-width: 80%;
-  border-radius: 1px;
+  min-width: 20%;
+  border-radius: 4px;
+  margin:10px;
+  padding: 10px;
+  list-style-type: none;
 }
-.message .float-left{
-  float: left;
-  background-color: #CCDBDC;
+.float-left{
+  background: #CCDBDC;
   color: #003366;
+  float: left;
+  clear: both;
 }
-.message .float-left .message_username{
+.float-left > .message_username{
   margin-left: 5px;
   text-align: left;
-  margin-bottom: 15px;
-  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
-.message .float-left .text_wrapper{
-  margin: 5px auto;
+.float-left > .text_wrapper{
+  max-width: 100%;
+  margin: 0px auto;
   display: block;
+
 }
-.message .float-right{
+.float-right{
   float: right;
-  background-color: #E9724C;
+  background: #E9724C;
+  color: white;
+  clear: both;
 }
-.message .float-right .message_username{
-  margin-bottom: 15px;
+.float-right > .message_username{
+  margin-bottom: 10px;
   margin-right: 5px;
   text-align: right;
+  font-weight: bold;
 }
-.message .float-right .text_wrapper{
-  margin: 5px auto;
+.float-right > .text_wrapper{
+  max-width: 100%;
+  margin: 2px auto;
   display: block;
 }
 .bottom_window{
-  background-color: #fafafa;
+  background: #fafafa;
   max-width: 100%;
 }
 .message_input{
@@ -175,7 +202,7 @@ h3{
   padding: 2%;
   margin-right: 5%;
   background: #156C50;
-  border: 1px solid rgba(0, 0, 0, 0);
+  /*border: 1px solid rgba(0, 0, 0, 0);*/
   border-radius: 4px;
   color: white;
   font-size: 16px;

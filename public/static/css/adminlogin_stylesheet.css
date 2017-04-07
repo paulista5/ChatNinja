@@ -1,0 +1,51 @@
+body{
+  background: rgb(50, 50 , 50);
+  font-family: Raleway;
+}
+h1{
+  margin-top: 80px;
+  margin-bottom: 40px;
+  text-align: center;
+  color: white;
+}
+.mainbody{
+  width: 50%;
+  margin: 0px auto;
+  background: #fafafa;
+  border: 1px solid rgba(0, 0, 0, 0);;
+}
+.loginform{
+  max-width: 80%;
+  margin: 20px auto;
+}
+.label{
+  font-weight: bold;
+}
+.username_input{
+  display: block;
+  width: 100%;
+  margin: 10px auto;
+  padding: 2%;
+  border-radius: 2px;
+  border: 1px solid #ddd;
+}
+.password_input{
+  display: block;
+  width: 100%;
+  margin: 10px auto;
+  padding: 2%;
+  border-radius: 2px;
+  border: 1px solid #ddd;
+}
+.Login{
+  width: 50%;
+  background-color: #E9724C;
+  color: #fff;
+  border: 0;
+  margin: 10px auto;
+  display: block;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: Raleway;
+}

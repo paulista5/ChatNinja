@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <link href="/static/css/adminpanel_stylesheet.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="mainBody">
+      <button class="logout"  onclick="location.href='/logout';">Logout</button>
+    <div class="grouplistTemplate">
+      <ul class="groupList">
+        <% for(var i = 0; i< data.length; i++){ %>
+         <li class = "groupItem <%= data[i]._id %>"><span class="spanleft">Name: <%= data[i].groupName %></span>
+           <span class="spanmiddle">Number of Users: <%= data[i].numberOfUsers %></span><button class="groupdelete" id="<%= data[i]._id %>">Delete</button></li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+  <script>
+  $(function(){
+    $('.groupdelete').click(function(){
+      var id = $(this).attr('id');
+      $('.'+id).remove();
+      var request = '/adminpanel/'+id;
+      $.ajax({
+        type: 'DELETE',
+        url: request,
+        success:function(){
+          location.reload();
+        }
+      });
+    });
+  });
+  </script>
+</body>
+</html>

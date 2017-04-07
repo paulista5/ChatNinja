@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
-var collectionName = 'ChatNinjaCollection';
+var conn = require('./connectionOne.js');
+var db = conn();
 var groupModelSchema = new Schema({
   groupName: String,
   discussionTopic: String,
   numberOfUsers: Number
 });
 
-var groupDatabase = mongoose.model('groupDatabase', groupModelSchema, collectionName);
+var groupDatabase = db.model('groupDatabase', groupModelSchema);
 module.exports = groupDatabase;

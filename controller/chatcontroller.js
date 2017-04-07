@@ -9,12 +9,9 @@ module.exports = function(io){
   var addedUser = false;
   var roomId;
   io.on('connection', function(socket){
-    // socket.on('join room', function(_id){
-    //   socket.join(_id);
-    //   roomId = _id;
-    // });
     socket.on('add user', function(userData){
       updateUser(userData.groupId, userData.userName, function(result){
+        if(userData == undefined) return;
         socket.username = userData.userName;
         socket.room = userData.groupId;
         socket.join(userData.groupId);
@@ -30,10 +27,13 @@ module.exports = function(io){
       io.sockets.in(socket.room).emit('new message', data);
     });
     socket.on('disconnect', function(){
-      console.log('disconnect called');
+      //console.log(socket.userId);
+      if(socket.userId == undefined){
+        return;
+      }
       deleteUser(socket.userId, function(response){
             if(response){
-              io.sockets.in(socket.id).emit('remove user', socket.userId);
+              io.sockets.in(socket.room).emit('remove user', socket.userId);
             }
           });
     });

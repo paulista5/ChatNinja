@@ -1,9 +1,12 @@
-var dbModel = require('./model/groupModel.js');
+var dbModel = require('./groupModel.js');
 
 module.exports = function(data, callback){
-    dbModel.create(data, function(err){
-      if(err) callback(false);
-      callback(true);
-    });
-
+  var newGroup = new dbModel({groupName: data.groupName, discussionTopic: data.discussionTopic
+  , numberOfUsers: data.numberOfUsers});
+  newGroup.save(function(err, doc){
+    if(err){
+      return;
+    }
+    callback(doc);
+  });
 }

@@ -5,7 +5,7 @@ var collectionName = 'ChatNinjaCollection';
 
 module.exports = function(){
     mongoose.connect('mongodb://localhost/'+collectionName, function(err){
-      if(err)handleError(err);
+      if(err)console.log(err);
       console.log('Connection to database successful!!')
     });
   }

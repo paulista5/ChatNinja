@@ -5,6 +5,12 @@ $(function(){
   var socket = io.connect();
   var display_users = false;
   var message_side = 'float-left';
+  if(users.length != 0){
+    for(var i = 0; i<users.length; i++){
+      var temp = users[i];
+      $('.users').append($('<li>').attr('class', 'list_username '+temp._id).html(temp.userName));
+    }
+  }
   // socket.on('connect', function(){
   //   socket.emit('join room', _id);
   // });
@@ -12,11 +18,11 @@ $(function(){
     var str = $('.username_input').val();
     if(str.trim() === '') return;
     userDataEntered = true;
-    userData['groupId'] =  !{_id};
+    userData['groupId'] = groupId ;
     userData['userName'] = str;
     $('.username_input').val('');
     socket.emit('add user', userData);
-    socket.emit('new message', userData.userName+' joined');
+    //socket.emit('new message', userData.userName+' joined');
     $('.modal').css("display", "none");
   });
   $('.more_menu').click(function(){
@@ -49,6 +55,7 @@ $(function(){
     socket.emit('new message', data) ;
   });
   socket.on('new message', function(data){
+    console.log(message_side);
     $('.message_list').append($('<li>').attr('class', 'message '+message_side).append(
       $('<div>').attr('class', 'message_username').html(data.userName)
     ).append(
@@ -56,7 +63,7 @@ $(function(){
       message_side = 'float-left';
   });
   socket.on('add new user', function(data){
-    $('.users').append($('<li>').attr('class', 'list-username '+data._id).html(data.userName));
+    $('.users').append($('<li>').attr('class', 'list_username '+data._id).html(data.userName));
   });
   socket.on('remove user', function(data){
     $('.'+ data).remove();

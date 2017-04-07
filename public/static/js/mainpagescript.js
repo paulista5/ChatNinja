@@ -3,6 +3,8 @@ $(function(){
   $('.startGroupChat').on('submit', function(){
     var groupName = $('.groupName').val();
     var topic = $('.topicName').val();
+    $('.groupName').val('');
+    $('.topicName').val('');
     if(groupName.trim() === '' || topic.trim() === ''){
       return;
     }
@@ -23,17 +25,21 @@ $(function(){
   if(!!window.EventSource){
     var source = new EventSource('/stream');
     source.addEventListener('message', function(e){
-      var groupNames = e.data.split('\n');
-      if(itemcount!=groupNames.length){
+      console.log(e.data);
+
+      if(e.data != 'undefined'){
+        var groupNames = e.data.split('\n');
         $('.available_groups').empty();
-        itemcount = groupNames.length;
-        for(var i=0; i < itemcount; i++){
+        //console.log(itemcount);
+        $('.available_groups').empty();
+        for(var i=0; i < groupNames.length; i++){
+          //console.log(groupNames[i]);
           var temp = JSON.parse(groupNames[i]);
           $('.available_groups').append($('<li>').attr('class', 'list_groupName').append(
           $('<a>').attr('href', '/ch/'+temp._id)
-          .append($('<span>').html('Group Name: '+ temp.groupName))
-          .append($('<span>').html('Topic of discussion: '+temp.discussionTopic))
-        .append($('<span>').html('Users '+temp.numberOfUsers))));
+          .append($('<div>').attr('class','spanleft').html('Group Name : '+ temp.groupName))
+          .append($('<div>').attr('class','spanmiddle').html('Topic of discussion : '+temp.discussionTopic))
+        .append($('<div>').attr('class','spanright').html('Users : '+temp.numberOfUsers))));
         }
       }
     });

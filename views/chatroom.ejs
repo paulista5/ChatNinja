@@ -7,10 +7,16 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  <!-- <script src="/static/bootstrap/js/bootstrap.min.js"></script> -->
   <script src="/static/js/chatscript.js"></script>
+  <!-- <script src="/static/bootstrap/js/bootstrap.min.js"></script> -->
 </head>
 <body>
+  <script type='text/javascript'>
+  var groupId = <%- JSON.stringify(_id) %>;
+  var users = <%- JSON.stringify(userlist) %>;
+  console.log(users[0]);
+</script>
+<h1>Chat-Ninja</h1>
   <div id="myModal" class="modal">
     <div class = "username_form">
       <label>Enter a Nickname to join:</label>

@@ -1,0 +1,63 @@
+body{
+  background-color: rgb(50, 50 , 50);
+  font-family: Raleway;
+}
+.mainBody{
+  background-color: #fff;
+  width: 80%;
+  margin: 30px auto;
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+.logout{
+  background-color: #156C50;
+  float: right;
+  margin: 10px 10px 10px;
+  border-radius: 4px;
+  border: 1px #156C50 solid;
+  color: white;
+  font-family: Raleway;
+  font-size: 16px;
+  padding: 2%;
+  clear: both;
+}
+.grouplistTemplate{
+  width: 100%;
+  clear: right;
+}
+.groupList{
+  width: 100%;
+}
+.groupItem{
+  width: 80%;
+  background: #fafafa;
+  list-style: none;
+  font-size: 18px;
+  padding: 1%;
+  vertical-align: middle;
+}
+.spanleft{
+  width: 30%;
+  margin-left: 5%;
+  margin-right: 5%;
+  float: left;
+  vertical-align: middle;
+}
+.spanmiddle{
+  width: 30%;
+  margin-left: 5%;
+  margin-right: 15%;
+  float: left;
+  text-align: center;
+  vertical-align: middle;
+}
+.groupdelete{
+  background-color: #156C50;
+  border-radius: 4px;
+  border: 1px #156C50 solid;
+  color: white;
+  font-family: Raleway;
+  font-size: 16px;
+  padding: 2%;
+  line-height: 0;
+  vertical-align: middle;
+}
