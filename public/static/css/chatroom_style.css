@@ -202,7 +202,7 @@ h3{
   padding: 2%;
   margin-right: 5%;
   background: #156C50;
-  /*border: 1px solid rgba(0, 0, 0, 0);*/
+  border: 1px solid rgba(0, 0, 0, 0);
   border-radius: 4px;
   color: white;
   font-size: 16px;

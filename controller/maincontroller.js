@@ -25,7 +25,7 @@ module.exports = function(app, passport){
     group['discussionTopic'] = data.discussionTopic;
     group['numberOfUsers'] = 0;
     insertGroup(group, function(result){
-      console.log(result);
+      //console.log(result);
     });
     //res.render('chatroom')
   });
